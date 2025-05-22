@@ -12,20 +12,21 @@ from model import MyModel                     # 导入自定义模型结构
 # 导入绘图库
 import matplotlib.pyplot as plt
 
-# 加载MNIST训练数据，将图像转换为张量，像素值归一化到[0,1]
-train_data = MNIST(root='./datasets', train=True, transform=transforms.ToTensor())
-# 创建训练数据加载器，批量大小为64
-train_loader = DataLoader(dataset=train_data, batch_size=64)
-
-# 加载MNIST测试数据
-test_data = MNIST(root="./datasets", train=False, transform=transforms.ToTensor())
-# 创建测试数据加载器，批量大小为64
-test_loader = DataLoader(dataset=test_data, batch_size=64)
-
 # 训练参数设置
 epoch = 10       # 训练轮数
 lr = 0.01        # 学习率
-batch_size = 256 # 批量大小(注：实际使用的是DataLoader中设置的批量大小64)
+batch_size = 64 # 批量大小
+
+# 加载MNIST训练数据，将图像转换为张量，像素值归一化到[0,1]
+train_data = MNIST(root='./datasets', train=True, transform=transforms.ToTensor())
+# 创建训练数据加载器
+train_loader = DataLoader(dataset=train_data, batch_size=batch_size, shuffle=True)
+
+# 加载MNIST测试数据
+test_data = MNIST(root="./datasets", train=False, transform=transforms.ToTensor())
+# 创建测试数据加载器
+test_loader = DataLoader(dataset=test_data, batch_size=batch_size, shuffle=False)
+
 
 # 实例化模型
 net = MyModel()
