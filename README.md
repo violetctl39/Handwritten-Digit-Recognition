@@ -1,0 +1,97 @@
+## 项目简介
+
+这是一个基于PyTorch的手写数字识别系统，使用MNIST数据集进行训练。该项目包含了从模型训练到部署的完整流程，可以识别手写的0-9数字。
+
+## 功能特点
+
+- 使用CNN神经网络模型进行手写数字识别
+- 支持GPU加速训练(CUDA)和CPU训练
+- 包含模型训练、转换和预测功能
+- 提供图形界面(GUI)供用户手动绘制数字进行识别
+- 支持导出为独立可执行程序
+
+## 项目结构
+
+```
+├── main.py               # 训练脚本
+├── model.py              # 模型定义
+├── predict_cpu.py        # CPU版本预测程序
+├── predict_cuda.py       # GPU版本预测程序
+├── convert_model.py      # 模型格式转换脚本
+├── model.pth             # 训练好的PyTorch模型
+├── model.onnx            # 转换后的ONNX格式模型
+├── requirements.txt      # 依赖库列表
+├── training_metrics.png  # 训练过程指标可视化
+└── datasets/             # 数据集目录
+    └── MNIST/            # MNIST数据集
+```
+
+## 环境要求
+
+通过以下命令安装必要的依赖：
+
+```bash
+pip install -r requirements.txt
+```
+
+主要依赖：
+- PyTorch
+- torchvision
+- matplotlib
+- numpy
+- Pillow (PIL)
+- tkinter (GUI界面)
+
+## 使用说明
+
+### 1. 训练模型
+
+运行以下命令训练模型：
+
+```bash
+python main.py
+```
+
+这将训练一个手写数字识别模型，并将模型保存为model.pth，同时生成训练过程指标可视化图表training_metrics.png。
+
+### 2. 转换模型格式
+
+将PyTorch模型转换为ONNX格式：
+
+```bash
+python convert_model.py
+```
+
+### 3. 运行预测程序
+
+#### CPU版本：
+
+```bash
+python predict_cpu.py
+```
+
+#### GPU版本（需要CUDA支持）：
+
+```bash
+python predict_cuda.py
+```
+
+这将启动一个GUI界面，您可以在其中手动绘制数字，程序会实时进行识别。
+
+## 模型说明
+
+该项目使用了一个简单的卷积神经网络(CNN)来识别手写数字，定义在model.py中。模型架构包括：
+- 卷积层
+- 池化层
+- 全连接层
+
+## 打包为可执行程序
+
+项目已使用PyInstaller打包为独立的可执行程序，位于predict_cpu目录下。
+
+## 训练结果
+
+训练过程中的损失和准确率变化可在training_metrics.png中查看，包括：
+- 训练损失
+- 训练准确率
+- 测试准确率
