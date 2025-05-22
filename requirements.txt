@@ -1,0 +1,6 @@
+matplotlib==3.5.1
+numpy==1.21.5
+onnxruntime==1.22.0
+Pillow==11.2.1
+torch
+torchvision
